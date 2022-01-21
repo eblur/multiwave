@@ -27,3 +27,11 @@ conda install -c conda-forge -c threeml astromodels threeml
 ```
 
 I tried `conda install -c xspecmodels xspec-modelsonly` but there were so many package conflicts that it wouldn't install.
+
+*Set up a jupyter notebook kernel*
+
+```
+conda activate threeML
+python -m ipykernel install --user --name threeML --display-name "threeML"
+conda deactivate
+```
