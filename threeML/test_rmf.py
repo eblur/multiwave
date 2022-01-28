@@ -26,6 +26,6 @@ dispersion_spectrum_generator = DispersionSpectrumLike.from_function(
 )
 
 tml.threeML_config.response_zero_color = "k"
-tml.threemL_config.response_cmap = "magma"
+tml.threeML_config.response_cmap = "magma"
 
 _ = dispersion_spectrum_generator.display_rsp()
