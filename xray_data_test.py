@@ -49,8 +49,20 @@ bin_hi = (np.arange(xmm_hdr['TLMAX1']) * bin_width + bin_cen + bin_width / 2.0) 
 counts = xmm_data['COUNTS'] * u.Unit('count')
 exposure = xmm_hdr['EXPOSURE'] * u.Unit('second')
 
-my_spectrum = pyxsis.XBinSpectrum(bin_lo, bin_hi, counts,
+inz = xmm_data['AREASCAL'] != 0
+new_counts = np.copy(xmm_data['COUNTS'])
+new_counts[inz] = xmm_data['COUNTS'][inz] / xmm_data['AREASCAL'][inz]
+plt.plot(bin_lo, xmm_data['COUNTS'])
+plt.plot(bin_lo, xmm_data['AREASCAL'])
+plt.plot(bin_lo, new_counts)
+plt.semilogy()
+plt.show()
+
+my_rmf = pyxsis.RMF('xmm-data/XMM_rmf_0148220201.FIT')
+
+my_spectrum = pyxsis.XBinSpectrum(bin_lo, bin_hi, counts, areascal=xmm_data['AREASCAL'],
     exposure=exposure, arf=None, rmf='xmm-data/XMM_rmf_0148220201.FIT')
+
 '''
 
 # Test my new pyxsis library
@@ -66,7 +78,15 @@ rgs1 = pyxsis.io.load_xmm_rgs('xmm-data/XMM_spec_0148220201.FIT',
 #pyxsis.binspectrum.group_mincounts(rgs1, 30)
 
 ax = plt.subplot(111)
-pyxsis.plot_counts(ax, rgs1, xunit='keV')
+pyxsis.plot_counts(ax, rgs1, xunit='Angstrom')
+plt.semilogy()
+#plt.xlim(0.1, 2.0)
+plt.show()
+
+
+ax = plt.subplot(111)
+pyxsis.plot_unfold(ax, rgs1, xunit='keV')
+#pyxsis.plot_unfold(ax, my_spectrum, xunit='Angstrom')
 plt.semilogy()
 plt.xlim(0.1, 2.0)
 plt.show()
