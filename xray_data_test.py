@@ -70,6 +70,8 @@ my_spectrum = pyxsis.XBinSpectrum(bin_lo, bin_hi, counts, areascal=xmm_data['ARE
 import numpy as np
 import matplotlib.pyplot as plt
 
+import astropy.units as u
+
 import pyxsis
 
 rgs1 = pyxsis.io.load_xmm_rgs('xmm-data/XMM_spec_0148220201.FIT',
@@ -87,6 +89,7 @@ plt.show()
 ax = plt.subplot(111)
 pyxsis.plot_unfold(ax, rgs1, xunit='keV')
 #pyxsis.plot_unfold(ax, my_spectrum, xunit='Angstrom')
-plt.semilogy()
+#plt.semilogy()
 plt.xlim(0.1, 2.0)
+plt.ylim(-0.1, 1.0)
 plt.show()
