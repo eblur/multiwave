@@ -93,3 +93,11 @@ pyxsis.plot_unfold(ax, rgs1, xunit='keV')
 plt.xlim(0.1, 2.0)
 plt.ylim(-0.1, 1.0)
 plt.show()
+
+## Plot the effective area x response array that I am using
+no_mod  = np.ones(len(rgs1.counts))
+eff_tmp = rgs1.apply_response(no_mod)
+
+plt.plot(rgs1.bmid_keV, eff_tmp)
+plt.xlim(0.1, 2.0)
+plt.show()
