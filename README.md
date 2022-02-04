@@ -31,7 +31,15 @@ cp /opt/spex/python/spex.yml .
 conda env create -f ~/spex.yml
 ```
 
-Then I installed my other python packages (above) in the conda spex environment.
+Then I installed my other python packages (above) in the conda spex environment. Note that the core packages were already installed because they were included in the spex.yml file. However, the yaml file specifically installs with **Python 3.5**; so this environment has older versions the packages I like to use. The resulting package list is as follows:
+
+- Astropy 3.0.4
+- Specutils 0.6
+- Numpy 1.15.2
+- Scipy 1.4.1
+- Matplotlib 3.0.0
+
+I worry about the compatibility of my developer version of pyxsis with Specutils 0.6
 
 ## 3ML
 
