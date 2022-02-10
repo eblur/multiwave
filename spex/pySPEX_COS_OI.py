@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 s=spex.Session()
 
 # Load the data
-s.data('data_A_combined.res','data_A_combined.spo')
+s.data('spex_input_files/data_A_combined.res','spex_input_files/data_A_combined.spo')
 
 # Bin
 s.bin(1,1,0,1600,2,'ang') #(inst, reg, elow, ehigh, factor, unit=None)
@@ -64,7 +64,7 @@ print("--------------- FREE PARAMETERS AFTER FITTING --------------")
 s.par_show('free')
 
 # Save the parameters of the fit
-s.par_write('cosOIparams.com', overwrite=True)
+s.par_write('spex_output_files/cosOIparams.com', overwrite=True)
 
 
 # Plot the model (after fitting)

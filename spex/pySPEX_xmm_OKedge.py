@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 s=spex.Session()
 
 # Load the data
-s.data('xmm.res','xmm.spo')
+s.data('spex_input_files/xmm.res','spex_input_files/xmm.spo')
 
 # Bin
 s.bin(1,1,19,35,2,'ang') #(inst, reg, elow, ehigh, factor, unit=None)
@@ -84,7 +84,7 @@ s.par_show('free')
 
 
 # Save the parameters of the fit
-s.par_write('xmmparams.com', overwrite=True)
+s.par_write('spex_output_files/xmmparams.com', overwrite=True)
 
 
 # Statistics
