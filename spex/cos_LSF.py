@@ -223,16 +223,18 @@ def convolve_lsf(wavelength, spec, cenwave, lsf_file, disptab, detector="FUV"):
             continue
 
         current_lsf = new_lsf[:, i]  # selects the current kernel
-
-        if len(chunk) >= len(
-            current_lsf
-        ):  # Makes sure that the kernel is smaller than the chunk
+        
+		# Makes sure that the kernel is smaller than the chunk
+        if len(chunk) >= len(current_lsf):  
             final_spec[chunk] = convolve(
                 spec_cos[chunk],
                 current_lsf,  # Applies the actual convolution
                 boundary="extend",
                 normalize_kernel=True,
             )
-
+        else: 
+        	print("The LSF is smaller than the data, cannot convolve")
+        	return
+		
     return wave_cos, final_spec  # Remember, not the same length as input spectrum data!
     
